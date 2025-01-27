@@ -1,0 +1,13 @@
+# Ignorer Visual Studio-specifikke filer og mapper
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Ignorer build-mapper
+bin/
+obj/
+
+# Ignorer andre midlertidige filer
+*.log
+*.vscode/

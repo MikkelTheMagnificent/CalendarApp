@@ -31,3 +31,4 @@ C:\Users\Chefen\OneDrive\Dokumenter\CalendarApp\CalendarApp\obj\Debug\net8.0\ref
 C:\Users\Chefen\OneDrive\Dokumenter\CalendarApp\CalendarApp\obj\Debug\net8.0\CalendarApp.pdb
 C:\Users\Chefen\OneDrive\Dokumenter\CalendarApp\CalendarApp\obj\Debug\net8.0\CalendarApp.genruntimeconfig.cache
 C:\Users\Chefen\OneDrive\Dokumenter\CalendarApp\CalendarApp\obj\Debug\net8.0\ref\CalendarApp.dll
+C:\Users\Chefen\OneDrive\Dokumenter\CalendarApp\CalendarApp\obj\Debug\net8.0\CalendarApp.sourcelink.json
