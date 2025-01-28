@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalendarApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bda6c94daa7456905702ace972991072c4e9529")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2914e0241036a7833903b2450b7ff4c1830cfd01")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalendarApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalendarApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

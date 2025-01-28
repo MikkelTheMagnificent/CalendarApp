@@ -26,6 +26,25 @@ namespace CalendarApp.Controllers
             return Ok(events);
         }
 
+
+        [HttpGet("{id}")]
+        public IActionResult GetEventById(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest("Invalid id.");
+            }
+
+            var eventDTO = _calendarService.GetEvent(id);
+            if (eventDTO == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(eventDTO);
+        }
+
+
         [HttpPost]
         public IActionResult AddEvent([FromBody] EventDTO eventDTO)
         {
@@ -37,5 +56,39 @@ namespace CalendarApp.Controllers
             _calendarService.AddEvent(eventDTO);
             return CreatedAtAction(nameof(GetEvents), new { id = eventDTO.Id }, eventDTO);
         }
+
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateEvent(string id, [FromBody] EventDTO eventDTO)
+        {
+            if (eventDTO == null || !ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                _calendarService.UpdateEvent(id, eventDTO);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEvent(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest("Invalid id.");
+            }
+
+            _calendarService.DeleteEvent(id);
+            return NoContent();
+        }
+
     }
 }
