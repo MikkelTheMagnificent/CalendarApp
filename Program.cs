@@ -1,6 +1,13 @@
+using MongoDB.Driver;
+using CalendarApp.Models;
+using CalendarApp.Data;
+using CalendarApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Nødvendige tjenester
+builder.Services.AddSingleton<MongoDbContext>();
+builder.Services.AddSingleton<CalendarService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
