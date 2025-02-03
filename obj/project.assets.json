@@ -1065,6 +1065,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.OpenApi >= 8.0.10",
+      "MongoDB.Bson >= 3.1.0",
       "MongoDB.Driver >= 3.1.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
@@ -1117,6 +1118,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.10, )"
+          },
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "[3.1.0, )"
           },
           "MongoDB.Driver": {
             "target": "Package",

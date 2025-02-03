@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Nødvendige tjenester
 builder.Services.AddSingleton<MongoDbContext>();
 builder.Services.AddSingleton<CalendarService>();
+builder.Services.AddSingleton<UserService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
@@ -21,8 +22,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.MapGet("/", () => "API is running!");
 
 
 app.UseHttpsRedirection();

@@ -21,5 +21,8 @@ namespace CalendarApp.Data
         // Egenskab for Events-collection
         public IMongoCollection<EventDTO> CalendarEvents =>
             _database.GetCollection<EventDTO>("Events");
+
+        public IMongoCollection<UserDTO> Users =>
+            _database.GetCollection<UserDTO>("Users");
     }
 }
