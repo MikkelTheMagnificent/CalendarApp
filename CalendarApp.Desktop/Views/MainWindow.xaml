@@ -5,8 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalendarApp.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1150" Width="2000">
+        Title="Dental2000" Height="1150" Width="2000"
+        WindowStartupLocation="CenterScreen"
+        Background="Gray">
+
 	<Grid>
-		<TextBlock Text="Welcome to CalendarApp" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<!-- Layout med rækker og kolonner -->
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<!-- Menubar -->
+			<RowDefinition Height="60"/>
+			<!-- FAST HØJDE til knapper -->
+			<RowDefinition Height="Auto"/>
+			<!-- Ugedage Header -->
+			<RowDefinition Height="*"/>
+			<!-- Kalenderindhold -->
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="220"/>
+			<!-- Sidepanel -->
+			<ColumnDefinition Width="*"/>
+			<!-- Hovedindhold -->
+		</Grid.ColumnDefinitions>
+
+		<!-- Menubar -->
+		<Grid Grid.Row="0" Grid.Column="1" Background="#2D2D30">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Button Content="Fravær" Command="{Binding AbsenceCommand}" Style="{StaticResource NavButtonStyle}"/>
+				<Button Content="Medarbejdere" Command="{Binding NavigateToEmployees}" Style="{StaticResource NavButtonStyle}"/>
+			</StackPanel>
+		</Grid>
+
+		<!-- Sidepanel -->
+		<DockPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="#2D2D30">
+			<TextBlock HorizontalAlignment="Center" Margin="10" Padding="10">
+				<Run Text="Dental" Foreground="White" FontSize="34" FontWeight="Bold"/>
+				<Run Text="2000" Foreground="Red" FontSize="34" FontWeight="Bold"/>
+			</TextBlock>
+		</DockPanel>
+
+		<!-- Måned Navigation -->
+		<Grid Grid.Row="1" Grid.Column="1" Background="#2D2D30" Height="60">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<!-- Plads til venstre -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Forrige knap -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Månedsnavn -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Næste knap -->
+				<ColumnDefinition Width="1*"/>
+				<!-- Plads til højre -->
+			</Grid.ColumnDefinitions>
+
+			<Button Grid.Column="1" Content="◀ Forrige" Command="{Binding PreviousMonthCommand}" FontSize="14" Padding="10" Margin="10"
+					HorizontalAlignment="Right"/>
+
+			<TextBlock Grid.Column="2" Text="{Binding CurrentMonthYear}" FontSize="18" Foreground="White" FontWeight="Bold" Margin="20,0,20,0"
+					   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+			<Button Grid.Column="3" Content="Næste ▶" Command="{Binding NextMonthCommand}" FontSize="14" Padding="10" Margin="10"
+					HorizontalAlignment="Left"/>
+		</Grid>
+
+
+		<!-- Ugedage Header -->
+		<Grid Grid.Row="2" Grid.Column="1" Background="#333">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Column="0" Text="Mandag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="1" Text="Tirsdag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="2" Text="Onsdag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="3" Text="Torsdag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="4" Text="Fredag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="5" Text="Lørdag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Grid.Column="6" Text="Søndag" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+		</Grid>
+
+		<!-- Kalender Grid -->
+		<Grid Grid.Row="3" Grid.Column="1" Background="White">
+			<ItemsControl ItemsSource="{Binding CalendarDays}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<UniformGrid Columns="7" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border BorderBrush="Gray" BorderThickness="1" Background="White">
+							<Grid>
+								<TextBlock Text="{Binding Day}"
+										   HorizontalAlignment="Right"
+										   VerticalAlignment="Top"
+										   Margin="5"
+										   FontSize="20"
+										   FontWeight="Bold">
+									<TextBlock.Style>
+										<Style TargetType="TextBlock">
+											<Setter Property="Foreground" Value="Black"/>
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding IsCurrentMonth}" Value="False">
+													<Setter Property="Foreground" Value="Gray"/>
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</TextBlock.Style>
+								</TextBlock>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+
+
+			</ItemsControl>
+		</Grid>
 	</Grid>
 </Window>
